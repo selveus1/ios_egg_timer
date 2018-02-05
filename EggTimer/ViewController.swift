@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func playBtnPressed(_ sender: Any) {
+        
         timer=Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
     }
     
@@ -57,8 +58,12 @@ class ViewController: UIViewController {
     
     @objc func processTimer(){
         print("A second has passed --> \(time)" )
-        time = time - 1
-        timerLabel.text = "\(time)"
+        if(time > 0){
+            time = time - 1
+            timerLabel.text = "\(time)"
+        }else{
+            timer.invalidate()
+        }
     }
     
     override func viewDidLoad() {
